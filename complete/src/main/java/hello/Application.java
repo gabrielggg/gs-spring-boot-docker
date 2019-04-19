@@ -20,7 +20,7 @@ public class Application {
     }
     
     @RequestMapping("/tercero")
-    public String reto() {
+    public String tercero() {
         return "otroendpoint";
     }
 
