@@ -18,6 +18,11 @@ public class Application {
     public String reto() {
         return "otroendpoint";
     }
+    
+    @RequestMapping("/tercero")
+    public String reto() {
+        return "otroendpoint";
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
