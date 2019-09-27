@@ -9,6 +9,7 @@ node{
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
+     sh "sudo yum install -y docker"
      sh "sudo docker build -t retodevopsgabo:B${BUILD_NUMBER} ."
    }
    stage('Push Docker Image'){
