@@ -1,5 +1,6 @@
-node{
-       
+pipeline{
+       agent none
+       Stages{
    stage('SCM Checkout'){
        git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git'
    }
@@ -9,4 +10,4 @@ node{
        sh 'mvn --version'
    }
    
-}
+       }}
