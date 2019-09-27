@@ -7,8 +7,7 @@ node{
      def mvnHome = tool name: 'maven-3', type: 'maven'
      def mvnCMD = "${mvnHome}/bin/mvn"
      sh "java -version"
-     sh '${mvnCMD} --version'
-     sh " clean package"
+     sh "${mvnCMD} clean package"
    }
    
    }
