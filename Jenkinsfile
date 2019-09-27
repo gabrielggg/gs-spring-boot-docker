@@ -1,13 +1,12 @@
 pipeline{
-       agent none
-       stages{
+   agent { docker 'maven:3-alpine' }
    stage('SCM Checkout'){
-       git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git'
+       git credentialsId: 'git-creds', url: 'https://github.com/javahometech/my-app'
    }
    stage('Mvn Package'){
-       agent { docker 'maven:3-alpine' } 
-       echo 'Hello, Maven'
-       sh 'mvn --version'
+     def mvnHome = tool name: 'maven-3', type: 'maven'
+     def mvnCMD = "${mvnHome}/bin/mvn"
+     sh "${mvnCMD} clean package"
    }
    
-       }}
+   }
