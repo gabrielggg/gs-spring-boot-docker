@@ -1,6 +1,6 @@
 pipeline{
        agent none
-       Stages{
+       stages{
    stage('SCM Checkout'){
        git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git'
    }
