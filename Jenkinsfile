@@ -6,7 +6,7 @@ node{
    stage('Análisis Sonar'){
      def mvnHome = tool name: 'maven-3', type: 'maven'
      def mvnCMD = "${mvnHome}/bin/mvn"
-     sh "${mvnCMD} sonar:sonar -Dsonar.host.url=http://172.31.29.122:9000/sonar/"
+     sh "${mvnCMD} sonar:sonar -Dsonar.host.url=http://172.31.21.126:9000/sonar/"
    }
    stage('Mvn Unit testing & Package'){
      def mvnHome = tool name: 'maven-3', type: 'maven'
