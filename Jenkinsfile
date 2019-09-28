@@ -26,14 +26,14 @@ node{
      try {
        def dockerDestroy = "sudo docker rm -f retodevops;"
        sshagent(['server-desa']) {
-         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerDestroy}"
+         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.235 ${dockerDestroy}"
     }
    } catch (error) {
       echo "no hay contenedor";
    } finally {
        def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
        sshagent(['server-desa']) {
-         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
+         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.235 ${dockerRun}"
      }
    }}
  
