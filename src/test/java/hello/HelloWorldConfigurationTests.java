@@ -52,7 +52,7 @@ public class HelloWorldConfigurationTests {
         ResponseEntity<String> entity = restTemplate
                 .getForEntity("http://localhost:" + this.port + "/", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        assertEquals(entity.getBody(),"reto");
+        assertEquals(entity.getBody(),"retoz");
     }
 
 }
