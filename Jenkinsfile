@@ -23,7 +23,7 @@ node{
     stage('Deploy'){
      def dockerRun = "docker run -p 8080:8080 -d --name gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
      sshagent(['server-desa']) {
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
+       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
      }
    }
    
