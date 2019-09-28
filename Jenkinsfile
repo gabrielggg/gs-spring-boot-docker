@@ -10,13 +10,13 @@ node{
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
-     sh "sudo docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
+     sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
    }
    stage('Push Docker Image'){
      withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'dockerHubPwd')]) {
-        sh "sudo docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
+        sh "docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
      }
-     sh "sudo docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+     sh "docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
    }
    
    }
