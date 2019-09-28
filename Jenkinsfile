@@ -10,6 +10,7 @@ node{
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
+     sh "hostname"
      sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
    }
    stage('Push Docker Image'){
