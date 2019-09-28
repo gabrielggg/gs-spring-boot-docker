@@ -6,7 +6,7 @@ node{
    stage('Mvn Package'){
      def mvnHome = tool name: 'maven-3', type: 'maven'
      def mvnCMD = "${mvnHome}/bin/mvn"
-     sh "${mvnCMD} sonar:sonar -Dsonar.host.url=http://34.217.214.220:9000/sonar/"
+     sh "${mvnCMD} sonar:sonar -Dsonar.host.url=http://35.163.30.67:9000/sonar/"
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
