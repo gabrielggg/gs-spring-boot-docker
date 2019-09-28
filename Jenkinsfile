@@ -21,14 +21,26 @@ node{
      sh "docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
    }
     stage('Deploy'){
-     def dockerStop = "sudo docker ps -f name=retodevops -q | docker ps -a;"
-     def dockerDestroy = "sudo docker container ls -a -f name=retodevops -q | xargs --no-run-if-empty -rdocker container rm;"
-     def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+     
+     try {
+     
+     def dockerDestroy = "sudo docker rm -f retodevops;"
+    
      sshagent(['server-desa']) {
-       sh "ssh -o StrictHostKeyChecking=yes ec2-user@172.31.20.31 ${dockerStop}"
        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerDestroy}"
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
+
      }
+    }catch (error) {
+      echo "no hay contenedor";
+    }finally {
+    
+      def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+      sshagent(['server-desa']) {
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
+     }
+    }
+     
+     
    }
    
    }
