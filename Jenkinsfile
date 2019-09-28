@@ -21,7 +21,7 @@ node{
      sh "docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
    }
     stage('Deploy'){
-     def dockerRun = "sudo docker rm -f retodevops; sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+     def dockerRun = "sudo docker rm -f retodevops; sleep 2; sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
      sshagent(['server-desa']) {
        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
      }
