@@ -10,37 +10,27 @@ node{
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
-     sh "hostname"
-     sh "whoami"
      sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
    }
    stage('Push Docker Image'){
      withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'dockerHubPwd')]) {
-        sh "docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
+       sh "docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
      }
      sh "docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
    }
-    stage('Deploy'){
-     
+   stage('Deploy'){
      try {
-     
-     def dockerDestroy = "sudo docker rm -f retodevops;"
-    
-     sshagent(['server-desa']) {
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerDestroy}"
-
-     }
-    }catch (error) {
-      echo "no hay contenedor";
-    }finally {
-    
-      def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
-      sshagent(['server-desa']) {
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
-     }
+       def dockerDestroy = "sudo docker rm -f retodevops;"
+       sshagent(['server-desa']) {
+         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerDestroy}"
     }
-     
-     
-   }
-   
-   }
+   } catch (error) {
+      echo "no hay contenedor";
+   } finally {
+       def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+       sshagent(['server-desa']) {
+         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
+     }
+    }}
+ 
+}
