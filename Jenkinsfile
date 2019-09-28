@@ -20,7 +20,7 @@ node{
      withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'dockerHubPwd')]) {
        sh "docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
      }
-     sh "docker push gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+     sh "docker push gabrielgomezdelatorre/retodevopsgabo:Build${BUILD_NUMBER}"
    }
    stage('Deploy'){
      try {
