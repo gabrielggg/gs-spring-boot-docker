@@ -16,7 +16,7 @@ node{
    stage('Build Docker Image'){
      sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
    }
-   stage('Push Docker Image'){
+   stage('Push Docker Image a DockerHub'){
      withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'dockerHubPwd')]) {
        sh "docker login -u gabrielgomezdelatorre -p ${dockerHubPwd}"
      }
