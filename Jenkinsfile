@@ -14,7 +14,7 @@ node{
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
-     sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
+     sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:Build${BUILD_NUMBER} ."
    }
    stage('Push Docker Image a DockerHub'){
      withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'dockerHubPwd')]) {
@@ -31,7 +31,7 @@ node{
    } catch (error) {
       echo "no hay contenedor";
    } finally {
-       def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER}"
+       def dockerRun = "sudo docker run -p 8080:8080 -d --name retodevops gabrielgomezdelatorre/retodevopsgabo:Build${BUILD_NUMBER}"
        sshagent(['server-desa']) {
          sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.235 ${dockerRun}"
      }
