@@ -11,6 +11,7 @@ node{
    }
    stage('Build Docker Image'){
      sh "hostname"
+     sh "whoami"
      sh "docker build -t gabrielgomezdelatorre/retodevopsgabo:B${BUILD_NUMBER} ."
    }
    stage('Push Docker Image'){
