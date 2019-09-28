@@ -3,10 +3,14 @@ node{
    stage('SCM Checkout'){
      git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git'
    }
-   stage('Mvn Package'){
+   stage('Análisis Sonar'){
      def mvnHome = tool name: 'maven-3', type: 'maven'
      def mvnCMD = "${mvnHome}/bin/mvn"
      sh "${mvnCMD} sonar:sonar -Dsonar.host.url=http://172.31.29.122:9000/sonar/"
+   }
+   stage('Mvn Unit testing & Package'){
+     def mvnHome = tool name: 'maven-3', type: 'maven'
+     def mvnCMD = "${mvnHome}/bin/mvn"
      sh "${mvnCMD} clean package"
    }
    stage('Build Docker Image'){
@@ -31,6 +35,6 @@ node{
        sshagent(['server-desa']) {
          sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.20.31 ${dockerRun}"
      }
-    }}
+   }}
  
 }
