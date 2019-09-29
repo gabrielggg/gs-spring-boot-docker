@@ -11,7 +11,7 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "reto";
+        return "RetoDevOps Completado";
     }
     
     @RequestMapping("/otroendpoint")
