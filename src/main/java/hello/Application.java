@@ -21,7 +21,7 @@ public class Application {
     
     @RequestMapping("/tercero")
     public String tercero() {
-        return "otroendpoint";
+        return "gracias";
     }
 
     public static void main(String[] args) {
