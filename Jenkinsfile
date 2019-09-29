@@ -36,7 +36,7 @@ node{
          sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.235 ${dockerRun}"
      }
    }}
-    stage('Jmeter'){
+    stage('Jmeter-test'){
      build job: 'Jmeter'
    }
     stage('Merge to master'){
