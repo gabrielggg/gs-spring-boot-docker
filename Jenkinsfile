@@ -41,10 +41,11 @@ node{
    }
     stage('Merge to master'){
      git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git', branch: 'develop'
-     sh "git fetch --all"
+     sh 'git pull origin master'
      sh 'git checkout master'
-     sh 'git checkout develop'
-     sh 'git merge master'
+     sh 'git merge develop'
+     sh 'git commit -m "merge"'
+     sh 'git push origin master'
     }
  
 }
