@@ -11,12 +11,12 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "RetoDevOps Completado";
+        return "reto";
     }
     
     @RequestMapping("/otroendpoint")
     public String reto() {
-        return "otroendpoint";
+        return "RetoDevOps";
     }
     
     @RequestMapping("/tercero")
