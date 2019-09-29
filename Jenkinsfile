@@ -39,12 +39,5 @@ node{
     stage('Jmeter-test'){
      build job: 'Jmeter'
    }
-    stage('Merge to master'){
-     git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git', branch: 'develop'
-     sh 'git checkout master'
-     sh 'git merge develop'
-     sh 'git commit -am "Merged develop branch to master"'
-     sh "git push origin master"
-    }
  
 }
