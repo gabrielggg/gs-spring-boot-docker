@@ -41,7 +41,7 @@ node{
    }
     stage('Merge to master'){
      git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git', branch: 'develop'
-     sh 'git tag -a tagName -m "Your tag comment"'
+     sh "git tag -a ${BUILD_NUMBER} -m 'tag'"
      sh 'git merge develop'
      sh 'git commit -am "Merged develop branch to master"'
      sh "git push origin master"
