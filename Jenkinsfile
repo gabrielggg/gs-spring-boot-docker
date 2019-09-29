@@ -39,7 +39,7 @@ node{
     stage('Jmeter'){
      build job: 'Jmeter'
    }
-    stage('Merge a master'){
+    stage('Merge to master'){
      git credentialsId: 'git-creds', url: 'https://github.com/gabrielggg/gs-spring-boot-docker.git', branch: develop
      sh 'git tag -a tagName -m "Your tag comment"'
      sh 'git merge develop'
