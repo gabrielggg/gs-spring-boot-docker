@@ -35,7 +35,8 @@ node{
        sshagent(['server-desa']) {
          sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.235 ${dockerRun}"
      }
-   }}
+   }
+   }
     stage('Jmeter-test'){
      build job: 'Jmeter'
    }
