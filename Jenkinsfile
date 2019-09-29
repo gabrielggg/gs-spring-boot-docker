@@ -44,7 +44,6 @@ node{
      sh "git tag -a ${BUILD_NUMBER} -m 'tag'"
      sh 'git checkout master'
      sh 'git merge develop'
-
-   }
+    }
  
 }
