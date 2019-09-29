@@ -37,7 +37,7 @@ node{
      }
    }
    }
-    stage('Jmeter-test'){
+    stage('Jmeter'){
      build job: 'Jmeter'
      }
  
